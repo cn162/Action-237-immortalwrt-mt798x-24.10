@@ -71,6 +71,8 @@ jobs:
          ./scripts/feeds update -a
          rm -rf feeds/packages/lang/golang
          git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+         echo "检查Go版本配置..."
+         cat feeds/packages/lang/golang/golang/Makefile | grep "PKG_VERSION"
 
 
     - name: Install feeds
