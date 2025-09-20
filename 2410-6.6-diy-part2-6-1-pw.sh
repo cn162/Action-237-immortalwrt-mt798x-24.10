@@ -9,6 +9,15 @@
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
 #
+# 确保使用正确的Go版本
+echo "配置Go 1.25+版本..."
+if [ -f "feeds/packages/lang/golang/golang/Makefile" ]; then
+    sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.25.0/' feeds/packages/lang/golang/golang/Makefile
+    sed -i 's/PKG_HASH:=.*/PKG_HASH:=skip/' feeds/packages/lang/golang/golang/Makefile
+fi
+
+# 清理旧的Go缓存
+rm -rf tmp/go-build dl/go-mod-cache
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
